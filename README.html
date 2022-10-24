@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>
+        Solução Distribuida de Cadeia de Abastecimento - HackMD
+    </title>
+    <link rel="icon" type="image/png" href="https://hackmd.io/favicon.png">
+    <link rel="apple-touch-icon" href="https://hackmd.io/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" integrity="sha256-3iu9jgsy9TpTwXKb7bNQzqWekRX7pPK+2OLj3R922fo=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.5.0/octicons.min.css" integrity="sha256-QiWfLIsCT02Sdwkogf6YMiQlj4NE84MKkzEMkZnMGdg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/themes/prism.min.css" integrity="sha256-vtR0hSWRc3Tb26iuN2oZHt3KRUomwTufNIf5/4oeCyg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@hackmd/emojify.js@2.1.0/dist/css/basic/emojify.min.css" integrity="sha256-UOrvMOsSDSrW6szVLe8ZDZezBxh5IoIfgTwdNDgTjiU=" crossorigin="anonymous" />
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i|Source+Code+Pro:300,400,500|Source+Sans+Pro:300,300i,400,400i,600,600i|Source+Serif+Pro&subset=latin-ext);.hljs{background:#fff;color:#333;display:block;overflow-x:auto;padding:.5em}.hljs-comment,.hljs-meta{color:#969896}.hljs-emphasis,.hljs-quote,.hljs-string,.hljs-strong,.hljs-template-variable,.hljs-variable{color:#df5000}.hljs-keyword,.hljs-selector-tag,.hljs-type{color:#a71d5d}.hljs-attribute,.hljs-bullet,.hljs-literal,.hljs-number,.hljs-symbol{color:#0086b3}.hljs-built_in,.hljs-builtin-name{color:#005cc5}.hljs-name,.hljs-section{color:#63a35c}.hljs-tag{color:#333}.hljs-attr,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-id,.hljs-selector-pseudo,.hljs-title{color:#795da3}.hljs-addition{background-color:#eaffea;color:#55a532}.hljs-deletion{background-color:#ffecec;color:#bd2c00}.hljs-link{text-decoration:underline}.markdown-body{word-wrap:break-word;font-size:16px;line-height:1.5}.markdown-body:after,.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:#c00}.markdown-body .anchor{float:left;line-height:1;margin-left:-20px;padding-right:4px}.markdown-body .anchor:focus{outline:none}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-bottom:16px;margin-top:0}.markdown-body hr{background-color:#e7e7e7;border:0;height:.25em;margin:24px 0;padding:0}.markdown-body blockquote{border-left:.25em solid #ddd;color:#777;font-size:16px;padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd,.popover kbd{background-color:#fcfcfc;border:1px solid;border-color:#ccc #ccc #bbb;border-radius:3px;box-shadow:inset 0 -1px 0 #bbb;color:#555;display:inline-block;font-size:11px;line-height:10px;padding:3px 5px;vertical-align:middle}.markdown-body .loweralpha{list-style-type:lower-alpha}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{font-weight:600;line-height:1.25;margin-bottom:16px;margin-top:24px}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#000;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 code,.markdown-body h1 tt,.markdown-body h2 code,.markdown-body h2 tt,.markdown-body h3 code,.markdown-body h3 tt,.markdown-body h4 code,.markdown-body h4 tt,.markdown-body h5 code,.markdown-body h5 tt,.markdown-body h6 code,.markdown-body h6 tt{font-size:inherit}.markdown-body h1{font-size:2em}.markdown-body h1,.markdown-body h2{border-bottom:1px solid #eee;padding-bottom:.3em}.markdown-body h2{font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:#777;font-size:.85em}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol.no-list,.markdown-body ul.no-list{list-style-type:none;padding:0}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-bottom:0;margin-top:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{padding-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{font-size:1em;font-style:italic;font-weight:700;margin-top:16px;padding:0}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{display:block;overflow:auto;width:100%;word-break:normal;word-break:keep-all}.markdown-body table th{font-weight:700}.markdown-body table td,.markdown-body table th{border:1px solid #ddd;padding:6px 13px}.markdown-body table tr{background-color:#fff;border-top:1px solid #ccc}.markdown-body table tr:nth-child(2n){background-color:#f8f8f8}.markdown-body img{background-color:#fff;box-sizing:initial;max-width:100%}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{background-color:initial;max-width:none;vertical-align:text-top}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{border:1px solid #ddd;display:block;float:left;margin:13px 0 0;overflow:hidden;padding:7px;width:auto}.markdown-body span.frame span img{display:block;float:left}.markdown-body span.frame span span{clear:both;color:#333;display:block;padding:5px 0 0}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{display:block;margin:13px auto 0;overflow:hidden;text-align:center}.markdown-body span.align-center span img{margin:0 auto;text-align:center}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{display:block;margin:13px 0 0;overflow:hidden;text-align:right}.markdown-body span.align-right span img{margin:0;text-align:right}.markdown-body span.float-left{display:block;float:left;margin-right:13px;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{display:block;float:right;margin-left:13px;overflow:hidden}.markdown-body span.float-right>span{display:block;margin:13px auto 0;overflow:hidden;text-align:right}.markdown-body code,.markdown-body tt{background-color:#0000000a;border-radius:3px;font-size:85%;margin:0;padding:.2em 0}.markdown-body code:after,.markdown-body code:before,.markdown-body tt:after,.markdown-body tt:before{content:"\00a0";letter-spacing:-.2em}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{text-decoration:inherit}.markdown-body pre{word-wrap:normal}.markdown-body pre>code{background:#0000;border:0;font-size:100%;margin:0;padding:0;white-space:pre;word-break:normal}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{background-color:#f7f7f7;border-radius:3px;font-size:85%;line-height:1.45;overflow:auto;padding:16px}.markdown-body pre code,.markdown-body pre tt{word-wrap:normal;background-color:initial;border:0;display:inline;line-height:inherit;margin:0;max-width:auto;overflow:visible;padding:0}.markdown-body pre code:after,.markdown-body pre code:before,.markdown-body pre tt:after,.markdown-body pre tt:before{content:normal}.markdown-body .csv-data td,.markdown-body .csv-data th{font-size:12px;line-height:1;overflow:hidden;padding:5px;text-align:left;white-space:nowrap}.markdown-body .csv-data .blob-line-num{background:#fff;border:0;padding:10px 8px 9px;text-align:right}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:#f8f8f8;border-top:0;font-weight:700}.news .alert .markdown-body blockquote{border:0;padding:0 0 0 40px}.activity-tab .news .alert .commits,.activity-tab .news .markdown-body blockquote{padding-left:0}.task-list-item{list-style-type:none}.task-list-item label{font-weight:400}.task-list-item.enabled label{cursor:pointer}.task-list-item+.task-list-item{margin-top:3px}.task-list-item-checkbox{cursor:default!important;float:left;margin:.31em 0 .2em -1.3em!important;vertical-align:middle}.markdown-body{max-width:758px;overflow:visible!important;padding-bottom:40px;padding-top:40px;position:relative}.markdown-body .emoji{vertical-align:top}.markdown-body pre{border:inherit!important}.markdown-body code{color:inherit!important}.markdown-body pre code .wrapper{display:-moz-inline-flex;display:-ms-inline-flex;display:-o-inline-flex;display:inline-flex}.markdown-body pre code .gutter{float:left;overflow:hidden;-webkit-user-select:none;user-select:none}.markdown-body pre code .gutter.linenumber{border-right:3px solid #6ce26c!important;box-sizing:initial;color:#afafaf!important;cursor:default;display:inline-block;min-width:20px;padding:0 8px 0 0;position:relative;text-align:right;z-index:4}.markdown-body pre code .gutter.linenumber>span:before{content:attr(data-linenumber)}.markdown-body pre code .code{float:left;margin:0 0 0 16px}.markdown-body .gist .line-numbers{border-bottom:none;border-left:none;border-top:none}.markdown-body .gist .line-data{border:none}.markdown-body .gist table{border-collapse:inherit!important;border-spacing:0}.markdown-body code[data-gist-id]{background:none;padding:0}.markdown-body code[data-gist-id]:after,.markdown-body code[data-gist-id]:before{content:""}.markdown-body code[data-gist-id] .blob-num{border:unset}.markdown-body code[data-gist-id] table{margin-bottom:unset;overflow:unset}.markdown-body code[data-gist-id] table tr{background:unset}.markdown-body[dir=rtl] pre{direction:ltr}.markdown-body[dir=rtl] code{direction:ltr;unicode-bidi:embed}.markdown-body .alert>p:last-child{margin-bottom:0}.markdown-body pre.abc,.markdown-body pre.flow-chart,.markdown-body pre.graphviz,.markdown-body pre.mermaid,.markdown-body pre.sequence-diagram,.markdown-body pre.vega{background-color:inherit;border-radius:0;overflow:visible;text-align:center;white-space:inherit}.markdown-body pre.abc>code,.markdown-body pre.flow-chart>code,.markdown-body pre.graphviz>code,.markdown-body pre.mermaid>code,.markdown-body pre.sequence-diagram>code,.markdown-body pre.vega>code{text-align:left}.markdown-body pre.abc>svg,.markdown-body pre.flow-chart>svg,.markdown-body pre.graphviz>svg,.markdown-body pre.mermaid>svg,.markdown-body pre.sequence-diagram>svg,.markdown-body pre.vega>svg{height:100%;max-width:100%}.markdown-body pre>code.wrap{word-wrap:break-word;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap}.markdown-body .alert>p:last-child,.markdown-body .alert>ul:last-child{margin-bottom:0}.markdown-body summary{display:list-item}.markdown-body summary:focus{outline:none}.markdown-body details summary{cursor:pointer}.markdown-body details:not([open])>:not(summary){display:none}.markdown-body figure{margin:1em 40px}.markdown-body .mark,.markdown-body mark{background-color:#fff1a7}.vimeo,.youtube{background-color:#000;background-position:50%;background-repeat:no-repeat;background-size:contain;cursor:pointer;display:table;overflow:hidden;text-align:center}.vimeo,.youtube{position:relative;width:100%}.youtube{padding-bottom:56.25%}.vimeo img{object-fit:contain;width:100%;z-index:0}.youtube img{object-fit:cover;z-index:0}.vimeo iframe,.youtube iframe,.youtube img{height:100%;left:0;position:absolute;top:0;width:100%}.vimeo iframe,.youtube iframe{vertical-align:middle;z-index:1}.vimeo .icon,.youtube .icon{color:#fff;height:auto;left:50%;opacity:.3;position:absolute;top:50%;transform:translate(-50%,-50%);transition:opacity .2s;width:auto;z-index:0}.vimeo:hover .icon,.youtube:hover .icon{opacity:.6;transition:opacity .2s}.slideshare .inner,.speakerdeck .inner{position:relative;width:100%}.slideshare .inner iframe,.speakerdeck .inner iframe{bottom:0;height:100%;left:0;position:absolute;right:0;top:0;width:100%}.figma{display:table;padding-bottom:56.25%;position:relative;width:100%}.figma iframe{border:1px solid #eee;bottom:0;height:100%;left:0;position:absolute;right:0;top:0;width:100%}.markmap-container{height:300px}.markmap-container>svg{height:100%;width:100%}.MJX_Assistive_MathML{display:none}#MathJax_Message{z-index:1000!important}.ui-infobar{color:#777;margin:25px auto -25px;max-width:760px;position:relative;z-index:2}.toc .invisable-node{list-style-type:none}.ui-toc{bottom:20px;position:fixed;z-index:998}.ui-toc.both-mode{margin-left:8px}.ui-toc.both-mode .ui-toc-label{border-bottom-left-radius:0;border-top-left-radius:0;height:40px;padding:10px 4px}.ui-toc-label{background-color:#e6e6e6;border:none;color:#868686;transition:opacity .2s}.ui-toc .open .ui-toc-label{color:#fff;opacity:1;transition:opacity .2s}.ui-toc-label:focus{background-color:#ccc;color:#000;opacity:.3}.ui-toc-label:hover{background-color:#ccc;opacity:1;transition:opacity .2s}.ui-toc-dropdown{margin-bottom:20px;margin-top:20px;max-height:70vh;max-width:45vw;overflow:auto;padding-left:10px;padding-right:10px;text-align:inherit;width:25vw}.ui-toc-dropdown>.toc{max-height:calc(70vh - 100px);overflow:auto}.ui-toc-dropdown[dir=rtl] .nav{letter-spacing:.0029em;padding-right:0}.ui-toc-dropdown a{overflow:hidden;text-overflow:ellipsis;white-space:pre}.ui-toc-dropdown .nav>li>a{color:#767676;display:block;font-size:13px;font-weight:500;padding:4px 20px}.ui-toc-dropdown .nav>li:first-child:last-child>ul,.ui-toc-dropdown .toc.expand ul{display:block}.ui-toc-dropdown .nav>li>a:focus,.ui-toc-dropdown .nav>li>a:hover{background-color:initial;border-left:1px solid #000;color:#000;padding-left:19px;text-decoration:none}.ui-toc-dropdown[dir=rtl] .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav>li>a:hover{border-left:none;border-right:1px solid #000;padding-right:19px}.ui-toc-dropdown .nav>.active:focus>a,.ui-toc-dropdown .nav>.active:hover>a,.ui-toc-dropdown .nav>.active>a{background-color:initial;border-left:2px solid #000;color:#000;font-weight:700;padding-left:18px}.ui-toc-dropdown[dir=rtl] .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav>.active>a{border-left:none;border-right:2px solid #000;padding-right:18px}.ui-toc-dropdown .nav .nav{display:none;padding-bottom:10px}.ui-toc-dropdown .nav>.active>ul{display:block}.ui-toc-dropdown .nav .nav>li>a{font-size:12px;font-weight:400;padding-bottom:1px;padding-left:30px;padding-top:1px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a{padding-right:30px}.ui-toc-dropdown .nav .nav>li>ul>li>a{font-size:12px;font-weight:400;padding-bottom:1px;padding-left:40px;padding-top:1px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a{padding-right:40px}.ui-toc-dropdown .nav .nav>li>a:focus,.ui-toc-dropdown .nav .nav>li>a:hover{padding-left:29px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:hover{padding-right:29px}.ui-toc-dropdown .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown .nav .nav>li>ul>li>a:hover{padding-left:39px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:hover{padding-right:39px}.ui-toc-dropdown .nav .nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>a{font-weight:500;padding-left:28px}.ui-toc-dropdown[dir=rtl] .nav .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>a{padding-right:28px}.ui-toc-dropdown .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active>a{font-weight:500;padding-left:38px}.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active>a{padding-right:38px}.markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}html[lang^=ja] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ ゴシック,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}html[lang=zh-tw] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}html[lang=zh-cn] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}html .markdown-body[lang^=ja]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ ゴシック,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}html .markdown-body[lang=zh-tw]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}html .markdown-body[lang=zh-cn]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}html[lang^=ja] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Meiryo UI,MS PGothic,ＭＳ Ｐゴシック,sans-serif}html[lang=zh-tw] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Microsoft JhengHei UI,微軟正黑UI,sans-serif}html[lang=zh-cn] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Microsoft YaHei UI,微软雅黑UI,sans-serif}html .ui-toc-dropdown[lang^=ja]{font-family:Source Sans Pro,Helvetica,Arial,Meiryo UI,MS PGothic,ＭＳ Ｐゴシック,sans-serif}html .ui-toc-dropdown[lang=zh-tw]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft JhengHei UI,微軟正黑UI,sans-serif}html .ui-toc-dropdown[lang=zh-cn]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft YaHei UI,微软雅黑UI,sans-serif}.ui-affix-toc{max-height:70vh;max-width:15vw;overflow:auto;position:fixed;top:0}.back-to-top,.expand-toggle,.go-to-bottom{color:#999;display:block;font-size:12px;font-weight:500;margin-left:10px;margin-top:10px;padding:4px 10px}.back-to-top:focus,.back-to-top:hover,.expand-toggle:focus,.expand-toggle:hover,.go-to-bottom:focus,.go-to-bottom:hover{color:#563d7c;text-decoration:none}.back-to-top,.go-to-bottom{margin-top:0}.ui-user-icon{background-position:50%;background-repeat:no-repeat;background-size:cover;border-radius:50%;display:block;height:20px;margin-bottom:2px;margin-right:5px;margin-top:2px;width:20px}.ui-user-icon.small{display:inline-block;height:18px;margin:0 0 .2em;vertical-align:middle;width:18px}.ui-infobar>small>span{line-height:22px}.ui-infobar>small .dropdown{display:inline-block}.ui-infobar>small .dropdown a:focus,.ui-infobar>small .dropdown a:hover{text-decoration:none}.ui-more-info{color:#888;cursor:pointer;vertical-align:middle}.ui-more-info .fa{font-size:16px}.ui-connectedGithub,.ui-published-note{color:#888}.ui-connectedGithub{line-height:23px;white-space:nowrap}.ui-connectedGithub a.file-path{color:#888;padding-left:22px;text-decoration:none}.ui-connectedGithub a.file-path:active,.ui-connectedGithub a.file-path:hover{color:#888;text-decoration:underline}.ui-connectedGithub .fa{font-size:20px}.ui-published-note .fa{font-size:20px;vertical-align:top}.unselectable{-webkit-user-select:none;-o-user-select:none;user-select:none}.selectable{-webkit-user-select:text;-o-user-select:text;user-select:text}.inline-spoiler-section{cursor:pointer}.inline-spoiler-section .spoiler-text{background-color:#333;border-radius:2px}.inline-spoiler-section .spoiler-text>*{opacity:0}.inline-spoiler-section .spoiler-img{filter:blur(10px)}.inline-spoiler-section.raw{background-color:#333;border-radius:2px}.inline-spoiler-section.raw>*{opacity:0}.inline-spoiler-section.unveil{cursor:auto}.inline-spoiler-section.unveil .spoiler-text{background-color:#3333331a}.inline-spoiler-section.unveil .spoiler-text>*{opacity:1}.inline-spoiler-section.unveil .spoiler-img{filter:none}@media print{blockquote,div,img,pre,table{page-break-inside:avoid!important}a[href]:after{font-size:12px!important}}.markdown-body.slides{color:#222;position:relative;z-index:1}.markdown-body.slides:before{background-color:currentColor;bottom:0;box-shadow:0 0 0 50vw;content:"";display:block;left:0;position:absolute;right:0;top:0;z-index:-1}.markdown-body.slides section[data-markdown]{background-color:#fff;margin-bottom:1.5em;position:relative;text-align:center}.markdown-body.slides section[data-markdown] code{text-align:left}.markdown-body.slides section[data-markdown]:before{content:"";display:block;padding-bottom:56.23%}.markdown-body.slides section[data-markdown]>div:first-child{left:1em;max-height:100%;overflow:hidden;position:absolute;right:1em;top:50%;transform:translateY(-50%)}.markdown-body.slides section[data-markdown]>ul{display:inline-block}.markdown-body.slides>section>section+section:after{border:3px solid #777;content:"";height:1.5em;position:absolute;right:1em;top:-1.5em}.site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,sans-serif}html[lang^=ja] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ ゴシック,sans-serif}html[lang=zh-tw] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html[lang=zh-cn] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}body{font-smoothing:subpixel-antialiased!important;-webkit-font-smoothing:subpixel-antialiased!important;-moz-osx-font-smoothing:auto!important;-webkit-overflow-scrolling:touch;font-family:Source Sans Pro,Helvetica,Arial,sans-serif;letter-spacing:.025em}html[lang^=ja] body{font-family:Source Sans Pro,Helvetica,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ ゴシック,sans-serif}html[lang=zh-tw] body{font-family:Source Sans Pro,Helvetica,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html[lang=zh-cn] body{font-family:Source Sans Pro,Helvetica,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}abbr[title]{border-bottom:none;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}abbr[data-original-title],abbr[title]{cursor:help}body.modal-open{overflow-y:auto;padding-right:0!important}svg{text-shadow:none}
+    </style>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" integrity="sha256-3Jy/GbSLrg0o9y5Z5n1uw0qxZECH7C6OQpVBgNFYa0g=" crossorigin="anonymous"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js" integrity="sha256-g6iAfvZp+nDQ2TdTR/VVKJf3bGro4ub5fvWSWVRi2NE=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.9/es5-shim.min.js" integrity="sha256-8E4Is26QH0bD52WoQpcB+R/tcWQtpzlCojrybUd7Mxo=" crossorigin="anonymous"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div id="doc" class="markdown-body container-fluid comment-enabled" data-hard-breaks="true"><h1 id="Solução-Distribuida-de-Cadeia-de-Abastecimento" data-id="Solução-Distribuida-de-Cadeia-de-Abastecimento"><a class="anchor hidden-xs" href="#Solução-Distribuida-de-Cadeia-de-Abastecimento" title="Solução-Distribuida-de-Cadeia-de-Abastecimento"><span class="octicon octicon-link"></span></a><span>Solução Distribuida de Cadeia de Abastecimento</span></h1><h2 id="Introdução" data-id="Introdução"><a class="anchor hidden-xs" href="#Introdução" title="Introdução"><span class="octicon octicon-link"></span></a><span>Introdução</span></h2><p><span>Projeto de implementação de solução distribuída para monitoramento de níveis de estoque de produtos em lojas de varejo e centro de distribuição.</span></p><h2 id="Enunciado-do-Problema" data-id="Enunciado-do-Problema"><a class="anchor hidden-xs" href="#Enunciado-do-Problema" title="Enunciado-do-Problema"><span class="octicon octicon-link"></span></a><span>Enunciado do Problema</span></h2><ul>
+<li>
+<p><span>Utilizar Docker/Python como plataforma de solução e HiveMQ como broker de comunicação entre Fábricas / CD / Lojas.</span></p>
+</li>
+<li>
+<p><span>200 tipos de produtos; 20 lojas; 70 fabricantes, cada fabricante produz alguma quantidade de produto e 1 centro de distribuição</span></p>
+</li>
+<li>
+<p><span>Cada loja possui um estoque com 200 tipos de produtos, cada tipo de produto tem um PID. Se o produto for do </span><strong><span>tipo A</span></strong><span>, a loja começa com </span><strong><span>100 unidades em estoque</span></strong><span>. Se o produto for do </span><strong><span>tipo B,</span></strong><span> a loja começa com </span><strong><span>60 unidades em estoque</span></strong><span>. Se o produto for do </span><strong><span>tipo C</span></strong><span>, a loja começa com </span><strong><span>20 unidades em estoque</span></strong><span>.</span></p>
+</li>
+<li>
+<p><span>A quantidade de classicação dos produtos é feita de qualquer maneira.</span></p>
+</li>
+<li>
+<p><span>Para cada produto, se a quantidade em estoque estiver entre 100% e 50%, o produto recebe a cor </span><strong><span>Verde</span></strong><span>. Entre 50% e 25% a cor </span><strong><span>Amarela</span></strong><span> e entre 25% e 0%, a cor </span><strong><span>Vermelha</span></strong><span>.</span></p>
+</li>
+<li>
+<p><span>Se a quantidade dos produtos em estoque for Verde ou Amarela, não se realiza nenhuma ação. Se a quantidade dos produtos em estoque for Vermelha, o centro de distribuição deve realizar reposição.</span></p>
+</li>
+</ul><h2 id="Implementação-da-Solução" data-id="Implementação-da-Solução"><a class="anchor hidden-xs" href="#Implementação-da-Solução" title="Implementação-da-Solução"><span class="octicon octicon-link"></span></a><span>Implementação da Solução</span></h2><p><span>A solução para o problema proposta foi a implementação de 3 tipos de nós de sistema distribuído, um nó para as fábricas, um nó para as lojas e um nó para o centro de distribuição.</span></p><p><img src="https://i.imgur.com/sWUhSGc.png" alt="" loading="lazy"></p><h3 id="Fábrica" data-id="Fábrica"><a class="anchor hidden-xs" href="#Fábrica" title="Fábrica"><span class="octicon octicon-link"></span></a><span>Fábrica</span></h3><ul>
+<li><span>O nó fabrica é implementado no arquivo </span><code>fabrica.py</code><span>.</span></li>
+</ul><pre><code class="shell hljs">python3 fabrica.py -h
+usage: fabrica.py [-h] -n NUM -p PROD [PROD ...]
+
+Simula fábrica da cadeia de produção
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -n NUM, --num NUM     Número da fábrica
+  -p PROD [PROD ...], --prod PROD [PROD ...]
+                        Lista de produtos produzidos pela fábrica
+                        
+</code></pre><ul>
+<li><span class="ui-comment-inline-span">O</span><span> arquivo ao ser executado pelo terminal recebe dois parâmetros, uma flag -n acompanhada do número da fábrica e outra flag -p seguida da lista de produtos que a fabrica produz. Por exemplo, o comando abaixo inícia um nó da fábrica 1, que produz os produtos com ID 1, 2 e 3.</span></li>
+</ul><pre><code class="shell hljs">python3 fabrica.py -n 1 -p 1 2 3
+</code></pre><ul>
+<li>
+<p><span>O programa </span><code>fabrica.py</code><span> instancia um cliente MQTT e o conecta no broker da HiveMQ. Depois, cria uma thread do método </span><code>subscribe()</code><span> e o executa em loop.</span></p>
+</li>
+<li>
+<p><span>O método </span><code>subscribe()</code><span> inscreve o cliente no tópico </span><strong><span>Reabastecimento(produto)</span></strong><span> e fica chamando os métodos     de conexão e de mensagens.</span></p>
+</li>
+<li>
+<p><span>O método de conexão </span><code>on_conect()</code><span> é chamado quando o broker responde a solicitação de conexão e realiza a inscrição de fato da fábrica no tópico, por meio do método da biblioteca paho.mqtt.</span></p>
+</li>
+<li>
+<p><span>O método de mensagem </span><code>on_message()</code><span> é chamado sempre que uma mensagem é recebida no tópico </span><strong><span>Reabastecimento(produto)</span></strong><span>. A mensagem é decodificada, se  o remente da mensagem for o Centro de Distribuição requisitando uma certa quantidade de reabastecimento para o ID de um produto, então a fábrica publica no tópico </span><strong><span>Reabastecimento(produto)</span></strong><span>, reabastecendo a quantidade do produto requisitado.</span></p>
+</li>
+</ul><h3 id="Centro-de-Distribuição" data-id="Centro-de-Distribuição"><a class="anchor hidden-xs" href="#Centro-de-Distribuição" title="Centro-de-Distribuição"><span class="octicon octicon-link"></span></a><span>Centro de Distribuição</span></h3><ul>
+<li>
+<p><span>O nó Centro de distribuição é implementado no arquivo </span><code>centro_distribuicao.py</code><span>.</span></p>
+</li>
+<li>
+<p><span>O arquivo ao ser executado pelo terminal não recebe parâmetros. A execução é feita usando o comando:</span></p>
+</li>
+</ul><pre><code class="shell hljs">python3 centro_distribuicao.py
+</code></pre><ul>
+<li>
+<p><span>O programa </span><code>centro_distribuicao.py</code><span> instancia um cliente MQTT e o conecta no broker da HiveMQ. Depois, cria duas threads, uma do método </span><code>subscribe()</code><span> e uma do método </span><code>publish()</code><span>, e as executa em loop.</span></p>
+</li>
+<li>
+<p><span>O método </span><code>subscribe()</code><span> inscreve o cliente no tópico </span><strong><span>Reabastecimento(produto)</span></strong><span> e fica chamando os métodos     de conexão e de mensagens.</span></p>
+</li>
+<li>
+<p><span>O método de conexão </span><code>on_conect()</code><span> é chamado quando o broker responde a solicitação de conexão e realiza a inscrição de fato do centro de distribuição no tópico, por meio do método da biblioteca paho.mqtt.</span></p>
+</li>
+<li>
+<p><span>O método de mensagem </span><code>on_message()</code><span> é chamado sempre que uma mensagem é recebida no tópico </span><strong><span>Reabastecimento(produto)</span></strong><span> ou </span><strong><span>Repo</span></strong><span>. A mensagem é decodificada:</span></p>
+<ul>
+<li><span>Se  o remente da mensagem for uma </span><strong><span>fábrica</span></strong><span>, no tópico  </span><strong><span>Reabastecimento(produto)</span></strong><span>, repondo uma certa quantidade de um produto, então o centro de distribuição realiza a operação de crédito, aumentando a quantidade de produtos recebidos no estoque.</span></li>
+<li><span>Se  o remente da mensagem for uma </span><strong><span>loja</span></strong><span>, no tópico </span><strong><span>Repo</span></strong><span>, requisitando uma certa quantidade de um produto, então o centro de distribuição realiza a operação de débito, diminuidndo a quantidade de produtos no estoque e publica mensagens no tópico </span><strong><span>Repo</span></strong><span>, simulando a reposição das lojas.</span></li>
+</ul>
+</li>
+<li>
+<p><span>O método </span><code>publish()</code><span> atualiza as cores do estoque no DataFrame com base na porcentagem atual de produto em estoque, e em seguida lista todos os produtos em estoque que estão no vermelho. Para cada um deles (produtos no vermelho) publica no tópico </span><strong><span>Reabastecimento(produto)</span></strong><span>, requisitando uma certa de quantidade de produtos para as fábricas que fabricam tais produtos, para reabastecer o estoque do centro de distribuição.</span></p>
+</li>
+</ul><h3 id="Loja" data-id="Loja"><a class="anchor hidden-xs" href="#Loja" title="Loja"><span class="octicon octicon-link"></span></a><span>Loja</span></h3><ul>
+<li><span>O nó loja é implementado no arquivo </span><code>loja.py</code><span>.</span></li>
+</ul><pre><code class="shell hljs">python3 loja.py -h
+usage: loja.py [-h] -n NUM
+
+Simula loja da cadeia de produção
+
+optional arguments:
+  -h, --help         show this help message and exit
+  -n NUM, --num NUM  Número da loja
+                        
+</code></pre><ul>
+<li>
+<ul>
+<li><span>O arquivo ao ser executado pelo terminal recebe  uma flag -n acompanhada do número da loja. Por exemplo, o comando abaixo inícia um nó da loja 1.</span></li>
+</ul>
+</li>
+</ul><pre><code class="shell hljs">python3 loja.py -n 1 
+</code></pre><ul>
+<li>
+<p><span>O programa </span><code>loja.py</code><span> instancia um cliente MQTT e o conecta no broker da HiveMQ. Depois, cria duas threads, uma do método </span><code>subscribe()</code><span> e uma do método </span><code>publish()</code><span>, e as executa em loop.</span></p>
+</li>
+<li>
+<p><span>O método </span><code>subscribe()</code><span> inscreve o cliente no tópico </span><strong><span>Repo</span></strong><span> e fica chamando os métodos de conexão e de mensagens.</span></p>
+</li>
+<li>
+<p><span>O método de conexão </span><code>on_conect()</code><span> é chamado quando o broker responde a solicitação de conexão e realiza a inscrição de fato da loja no tópico, por meio do método da biblioteca paho.mqtt.</span></p>
+</li>
+<li>
+<p><span>O método de mensagem </span><code>on_message()</code><span> é chamado sempre que uma mensagem é recebida no tópico </span><strong><span>Repo</span></strong><span>. A mensagem é decodificada.</span></p>
+</li>
+<li>
+<p><span>Se  o remente da mensagem for o </span><strong><span>centro de distribuição</span></strong><span>, no tópico  </span><strong><span>Repo</span></strong><span>, repondo uma certa quantidade de um produto, então a loja realiza a operação de crédito, aumentando a quantidade de produtos recebidos no estoque.</span></p>
+</li>
+<li>
+<p><span>O método </span><code>publish()</code><span> atualiza as cores do estoque no DataFrame com base na porcentagem atual de produto em estoque, e em seguida lista todos os produtos em estoque que estão no vermelho. Para cada um deles (produtos no vermelho) publica no tópico </span><strong><span>Repo</span></strong><span>, requisitando uma certa de quantidade de produtos para o centro de distribuição para reabastecer o estoque da loja.</span></p>
+</li>
+<li>
+<p><span>O estoque das lojas foi implementado como um DataFrame que lê um arquivo .csv. Assumindo que o estoque tem capacidade máxima de 100 produtos. A configuração inicial do estoque é a seguinte:</span></p>
+</li>
+</ul><pre><code>     Tipo      Quantidade    Porcentagem  Cor
+---  ------  ------------  -------------  --------
+  0  A                100           50    Verde
+  1  A                100           50    Verde
+  2  A                100           50    Verde
+  3  A                100           50    Verde
+  4  A                100           50    Verde
+  5  A                100           50    Verde
+  6  A                100           50    Verde
+  7  A                100           50    Verde
+  8  A                100           50    Verde
+  9  A                100           50    Verde
+ 10  A                100           50    Verde
+ 11  A                100           50    Verde
+ 12  A                100           50    Verde
+ 13  A                100           50    Verde
+ 14  A                100           50    Verde
+ 15  A                100           50    Verde
+ 16  A                100           50    Verde
+ 17  A                100           50    Verde
+ 18  A                100           50    Verde
+ 19  A                100           50    Verde
+ 20  A                100           50    Verde
+ 21  A                100           50    Verde
+ 22  A                100           50    Verde
+ 23  A                100           50    Verde
+ 24  A                100           50    Verde
+ 25  A                100           50    Verde
+ 26  A                100           50    Verde
+ 27  A                100           50    Verde
+ 28  A                100           50    Verde
+ 29  A                100           50    Verde
+ 30  A                100           50    Verde
+ 31  A                100           50    Verde
+ 32  A                100           50    Verde
+ 33  A                100           50    Verde
+ 34  A                100           50    Verde
+ 35  A                100           50    Verde
+ 36  A                100           50    Verde
+ 37  A                100           50    Verde
+ 38  A                100           50    Verde
+ 39  A                100           50    Verde
+ 40  A                100           50    Verde
+ 41  A                100           50    Verde
+ 42  A                100           50    Verde
+ 43  A                100           50    Verde
+ 44  A                100           50    Verde
+ 45  A                100           50    Verde
+ 46  A                100           50    Verde
+ 47  A                100           50    Verde
+ 48  A                100           50    Verde
+ 49  A                100           50    Verde
+ 50  A                100           50    Verde
+ 51  A                100           50    Verde
+ 52  A                100           50    Verde
+ 53  A                100           50    Verde
+ 54  A                100           50    Verde
+ 55  A                100           50    Verde
+ 56  A                100           50    Verde
+ 57  A                100           50    Verde
+ 58  A                100           50    Verde
+ 59  A                100           50    Verde
+ 60  A                100           50    Verde
+ 61  A                100           50    Verde
+ 62  A                100           50    Verde
+ 63  A                100           50    Verde
+ 64  A                100           50    Verde
+ 65  A                100           50    Verde
+ 66  A                100           50    Verde
+ 67  A                100           50    Verde
+ 68  A                100           50    Verde
+ 69  A                100           50    Verde
+ 70  B                 60           30    Amarelo
+ 71  B                 60           30    Amarelo
+ 72  B                 60           30    Amarelo
+ 73  B                 60           30    Amarelo
+ 74  B                 60           30    Amarelo
+ 75  B                 60           30    Amarelo
+ 76  B                 60           30    Amarelo
+ 77  B                 60           30    Amarelo
+ 78  B                 60           30    Amarelo
+ 79  B                 60           30    Amarelo
+ 80  B                 60           30    Amarelo
+ 81  B                 60           30    Amarelo
+ 82  B                 60           30    Amarelo
+ 83  B                 60           30    Amarelo
+ 84  B                 60           30    Amarelo
+ 85  B                 60           30    Amarelo
+ 86  B                 60           30    Amarelo
+ 87  B                 60           30    Amarelo
+ 88  B                 60           30    Amarelo
+ 89  B                 60           30    Amarelo
+ 90  B                 60           30    Amarelo
+ 91  B                 60           30    Amarelo
+ 92  B                 60           30    Amarelo
+ 93  B                 60           30    Amarelo
+ 94  B                 60           30    Amarelo
+ 95  B                 60           30    Amarelo
+ 96  B                 60           30    Amarelo
+ 97  B                 60           30    Amarelo
+ 98  B                 60           30    Amarelo
+ 99  B                 60           30    Amarelo
+100  B                 60           30    Amarelo
+101  B                 60           30    Amarelo
+102  B                 60           30    Amarelo
+103  B                 60           30    Amarelo
+104  B                 60           30    Amarelo
+105  B                 60           30    Amarelo
+106  B                 60           30    Amarelo
+107  B                 60           30    Amarelo
+108  B                 60           30    Amarelo
+109  B                 60           30    Amarelo
+110  B                 60           30    Amarelo
+111  B                 60           30    Amarelo
+112  B                 60           30    Amarelo
+113  B                 60           30    Amarelo
+114  B                 60           30    Amarelo
+115  B                 60           30    Amarelo
+116  B                 60           30    Amarelo
+117  B                 60           30    Amarelo
+118  B                 60           30    Amarelo
+119  B                 60           30    Amarelo
+120  B                 60           30    Amarelo
+121  B                 60           30    Amarelo
+122  B                 60           30    Amarelo
+123  B                 60           30    Amarelo
+124  B                 60           30    Amarelo
+125  B                 60           30    Amarelo
+126  B                 60           30    Amarelo
+127  B                 60           30    Amarelo
+128  B                 60           30    Amarelo
+129  B                 60           30    Amarelo
+130  B                 60           30    Amarelo
+131  B                 60           30    Amarelo
+132  B                 60           30    Amarelo
+133  B                 60           30    Amarelo
+134  B                 60           30    Amarelo
+135  B                 60           30    Amarelo
+136  B                 60           30    Amarelo
+137  B                 60           30    Amarelo
+138  B                 60           30    Amarelo
+139  B                 60           30    Amarelo
+140  C                 20           10    Vermelho
+141  C                 20           10    Vermelho
+142  C                 20           10    Vermelho
+143  C                 20           10    Vermelho
+144  C                 20           10    Vermelho
+145  C                 20           10    Vermelho
+146  C                 20           10    Vermelho
+147  C                 20           10    Vermelho
+148  C                 20           10    Vermelho
+149  C                 20           10    Vermelho
+150  C                 20           10    Vermelho
+151  C                 20           10    Vermelho
+152  C                 20           10    Vermelho
+153  C                 20           10    Vermelho
+154  C                 20           10    Vermelho
+155  C                 20           10    Vermelho
+156  C                 20           10    Vermelho
+157  C                 20           10    Vermelho
+158  C                 20           10    Vermelho
+159  C                 20           10    Vermelho
+160  C                 20           10    Vermelho
+161  C                 20           10    Vermelho
+162  C                 20           10    Vermelho
+163  C                 20           10    Vermelho
+164  C                 20           10    Vermelho
+165  C                 20           10    Vermelho
+166  C                 20           10    Vermelho
+167  C                 20           10    Vermelho
+168  C                 20           10    Vermelho
+169  C                 20           10    Vermelho
+170  C                 20           10    Vermelho
+171  C                 20           10    Vermelho
+172  C                 20           10    Vermelho
+173  C                 20           10    Vermelho
+174  C                 20           10    Vermelho
+175  C                 20           10    Vermelho
+176  C                 20           10    Vermelho
+177  C                 20           10    Vermelho
+178  C                 20           10    Vermelho
+179  C                 20           10    Vermelho
+180  C                 20           10    Vermelho
+181  C                 20           10    Vermelho
+182  C                 20           10    Vermelho
+183  C                 20           10    Vermelho
+184  C                 20           10    Vermelho
+185  C                 20           10    Vermelho
+186  C                 20           10    Vermelho
+187  C                 20           10    Vermelho
+188  C                 20           10    Vermelho
+189  C                 20           10    Vermelho
+190  C                 20           10    Vermelho
+191  C                 20           10    Vermelho
+192  C                 20           10    Vermelho
+193  C                 20           10    Vermelho
+194  C                 20           10    Vermelho
+195  C                 20           10    Vermelho
+196  C                 20           10    Vermelho
+197  C                 20           10    Vermelho
+198  C                 20           10    Vermelho
+199  C                 20           10    Vermelho
+</code></pre><h3 id="Escalonando-a-solução" data-id="Escalonando-a-solução"><a class="anchor hidden-xs" href="#Escalonando-a-solução" title="Escalonando-a-solução"><span class="octicon octicon-link"></span></a><span>Escalonando a solução</span></h3><p><img src="https://i.imgur.com/AHyK766.png" alt="" loading="lazy"></p><ul>
+<li><span>Com a implementação dos nós pronta, para montar a solução distribúida utilizamos o Docker para escalonar as aplicações para rodar as diversas instâncias das Fábricas e Lojas em diferentes contêineres.</span></li>
+</ul><h4 id="Docker" data-id="Docker"><a class="anchor hidden-xs" href="#Docker" title="Docker"><span class="octicon octicon-link"></span></a><span>Docker</span></h4><div style="text-align:center">
+<p><img src="https://i.imgur.com/VWuZMeP.png" alt="" loading="lazy"></p>
+</div><p><span>O Docker é uma plataforma open source que facilita a criação e administração de ambientes isolados. Ele possibilita o empacotamento de uma aplicação ou ambiente dentro de um container, se tornando portátil para qualquer outro host que contenha o Docker instalado. Então, você consegue criar, implantar, copiar e migrar de um ambiente para outro com maior flexibilidade. A ideia do Docker é subir apenas uma máquina, ao invés de várias. E, nessa única máquina, você pode rodar várias aplicações sem que haja conflitos entre elas.</span></p><ul>
+<li>
+<p><strong><span>Imagem de contêiner</span></strong><span>: um pacote com todas as dependências e informações necessárias para criar um contêiner. Uma imagem inclui todas as dependências (como estruturas), além da configuração de implantação e execução a ser usada por um runtime de contêiner. Geralmente, uma imagem deriva de várias imagens base que são camadas empilhadas umas sobre as outras para formar o sistema de arquivos do contêiner. Uma imagem é imutável depois de ser criada</span></p>
+</li>
+<li>
+<p><strong><span>Dockerfile</span></strong><span>: um arquivo de texto que contém instruções para criar uma imagem do Docker. É como um script em lotes, a primeira linha declara a imagem base com a qual começar e, em seguida, siga as instruções para instalar os programas necessários, copiar os arquivos e assim por diante, até obter o ambiente de trabalho que precisa.</span></p>
+</li>
+<li>
+<p><strong><span>Build</span></strong><span>: a ação de criar de uma imagem de contêiner com base nas informações e no contexto fornecido pelo Dockerfile, além de arquivos adicionais na pasta em que a imagem é criada. Você pode criar imagens com um simples comando da Docker CLI (Command-Line Interface).</span></p>
+</li>
+<li>
+<p><strong><span>Contêiner</span></strong><span>: uma instância de uma imagem do Docker. Um contêiner representa a execução de um único aplicativo, processo ou serviço. Consiste no conteúdo de uma imagem do Docker, um ambiente de execução e um conjunto padrão de instruções. Ao dimensionar um serviço, você cria várias instâncias de um contêiner da mesma imagem. Ou um trabalho em lotes pode criar vários contêineres da mesma imagem, passando parâmetros diferentes para cada instância.</span></p>
+</li>
+</ul><h4 id="HiveMQ" data-id="HiveMQ"><a class="anchor hidden-xs" href="#HiveMQ" title="HiveMQ"><span class="octicon octicon-link"></span></a><span>HiveMQ</span></h4><div style="text-align:center">
+<p><img src="https://i.imgur.com/HdytFZM.gif" alt="" loading="lazy"></p>
+</div><p><span>HiveMQ é um broker MQTT e uma plataforma de mensagens baseada em cliente projetada para a movimentação rápida, eficiente e confiável de dados de e para dispositivos IoT conectados. Ele usa o protocolo MQTT para envio instantâneo e bidirecional de dados entre seu dispositivo e seus sistemas corporativos</span></p><h4 id="Integração-dos-serviços" data-id="Integração-dos-serviços"><a class="anchor hidden-xs" href="#Integração-dos-serviços" title="Integração-dos-serviços"><span class="octicon octicon-link"></span></a><span>Integração dos serviços</span></h4><p><span>Com os programas dos nós da aplicação prontos, utilizando a plataforma do Docker criamos imagens instânciaves dos programas python para serem executadas em  91 contêineres separados, cada um contêndo sua aplicação python sendo executada. E para haver a comunicação entre dos contêineres, foi utilizado o broker gratuito do HiveMQ para processar as mensagens envidas e recebidas entre os mesmos.</span></p><p><span>Essa integração dos serviços utilizando o Docker ainda não foi implementada, por falta de conhecimento técnico da ferramenta, principalmente na execução de multiplas instâncias de contêineres com a ferramenta Docker Compose. Assim para simular essa integração com o Docker, foi criado um Shell Script para que instâncie a cadeia de distribuição chamando 91 processos python referente as fábricas, lojas e contro de distribuição.</span></p><p><span>Os próximos passos para o projeto seriam obter um maior conhecimento técnico do Docker e Docker Compose para finalizar totalmente o projeto</span></p><h2 id="Visualizando-a-solução" data-id="Visualizando-a-solução"><a class="anchor hidden-xs" href="#Visualizando-a-solução" title="Visualizando-a-solução"><span class="octicon octicon-link"></span></a><span>Visualizando a solução</span></h2><p><span>Acesse o arquivo </span><a href="https://colab.research.google.com/drive/1xWUnPQENsACNDFLDRI3FNekNJVa14ykD?usp=sharing" target="_blank" rel="noopener"><span>Google Colab</span></a><span> para visualizar o plot da simualção do projeto e a variação em estoque dos produtos no tempo.</span></p><h2 id="Referências" data-id="Referências"><a class="anchor hidden-xs" href="#Referências" title="Referências"><span class="octicon octicon-link"></span></a><span>Referências</span></h2><ul>
+<li><a href="https://pypi.org/project/paho-mqtt/" target="_blank" rel="noopener"><span>Eclipse Paho MQTT Python</span></a></li>
+<li><a href="https://www.hivemq.com/" target="_blank" rel="noopener"><span>Hive MQ</span></a></li>
+</ul></div>
+    <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
+        <div class="pull-right dropdown">
+            <a id="tocLabel" class="ui-toc-label btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" title="Table of content">
+                <i class="fa fa-bars"></i>
+            </a>
+            <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
+                <div class="toc"><ul class="nav">
+<li><a href="#Solução-Distribuida-de-Cadeia-de-Abastecimento" title="Solução Distribuida de Cadeia de Abastecimento">Solução Distribuida de Cadeia de Abastecimento</a><ul class="nav">
+<li><a href="#Introdução" title="Introdução">Introdução</a></li>
+<li><a href="#Enunciado-do-Problema" title="Enunciado do Problema">Enunciado do Problema</a></li>
+<li><a href="#Implementação-da-Solução" title="Implementação da Solução">Implementação da Solução</a><ul class="nav">
+<li><a href="#Fábrica" title="Fábrica">Fábrica</a></li>
+<li><a href="#Centro-de-Distribuição" title="Centro de Distribuição">Centro de Distribuição</a></li>
+<li><a href="#Loja" title="Loja">Loja</a></li>
+<li><a href="#Escalonando-a-solução" title="Escalonando a solução">Escalonando a solução</a></li>
+</ul>
+</li>
+<li><a href="#Visualizando-a-solução" title="Visualizando a solução">Visualizando a solução</a></li>
+<li><a href="#Referências" title="Referências">Referências</a></li>
+</ul>
+</li>
+</ul>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">Expand all</a><a class="back-to-top" href="#">Back to top</a><a class="go-to-bottom" href="#">Go to bottom</a></div>
+            </ul>
+        </div>
+    </div>
+    <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;" null null>
+        <div class="toc"><ul class="nav">
+<li><a href="#Solução-Distribuida-de-Cadeia-de-Abastecimento" title="Solução Distribuida de Cadeia de Abastecimento">Solução Distribuida de Cadeia de Abastecimento</a><ul class="nav">
+<li><a href="#Introdução" title="Introdução">Introdução</a></li>
+<li><a href="#Enunciado-do-Problema" title="Enunciado do Problema">Enunciado do Problema</a></li>
+<li><a href="#Implementação-da-Solução" title="Implementação da Solução">Implementação da Solução</a><ul class="nav">
+<li><a href="#Fábrica" title="Fábrica">Fábrica</a></li>
+<li><a href="#Centro-de-Distribuição" title="Centro de Distribuição">Centro de Distribuição</a></li>
+<li><a href="#Loja" title="Loja">Loja</a></li>
+<li><a href="#Escalonando-a-solução" title="Escalonando a solução">Escalonando a solução</a></li>
+</ul>
+</li>
+<li><a href="#Visualizando-a-solução" title="Visualizando a solução">Visualizando a solução</a></li>
+<li><a href="#Referências" title="Referências">Referências</a></li>
+</ul>
+</li>
+</ul>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">Expand all</a><a class="back-to-top" href="#">Back to top</a><a class="go-to-bottom" href="#">Go to bottom</a></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.6.0/gist-embed.min.js" integrity="sha256-KyF2D6xPIJUW5sUDSs93vWyZm+1RzIpKCexxElmxl8g=" crossorigin="anonymous" defer></script>
+    <script>
+        var markdown = $(".markdown-body");
+        //smooth all hash trigger scrolling
+        function smoothHashScroll() {
+            var hashElements = $("a[href^='#']").toArray();
+            for (var i = 0; i < hashElements.length; i++) {
+                var element = hashElements[i];
+                var $element = $(element);
+                var hash = element.hash;
+                if (hash) {
+                    $element.on('click', function (e) {
+                        // store hash
+                        var hash = this.hash;
+                        if ($(hash).length <= 0) return;
+                        // prevent default anchor click behavior
+                        e.preventDefault();
+                        // animate
+                        $('body, html').stop(true, true).animate({
+                            scrollTop: $(hash).offset().top
+                        }, 100, "linear", function () {
+                            // when done, add hash to url
+                            // (default click behaviour)
+                            window.location.hash = hash;
+                        });
+                    });
+                }
+            }
+        }
+
+        smoothHashScroll();
+        var toc = $('.ui-toc');
+        var tocAffix = $('.ui-affix-toc');
+        var tocDropdown = $('.ui-toc-dropdown');
+        //toc
+        tocDropdown.click(function (e) {
+            e.stopPropagation();
+        });
+
+        var enoughForAffixToc = true;
+
+        function generateScrollspy() {
+            $(document.body).scrollspy({
+                target: ''
+            });
+            $(document.body).scrollspy('refresh');
+            if (enoughForAffixToc) {
+                toc.hide();
+                tocAffix.show();
+            } else {
+                tocAffix.hide();
+                toc.show();
+            }
+            $(document.body).scroll();
+        }
+
+        function windowResize() {
+            //toc right
+            var paddingRight = parseFloat(markdown.css('padding-right'));
+            var right = ($(window).width() - (markdown.offset().left + markdown.outerWidth() - paddingRight));
+            toc.css('right', right + 'px');
+            //affix toc left
+            var newbool;
+            var rightMargin = (markdown.parent().outerWidth() - markdown.outerWidth()) / 2;
+            //for ipad or wider device
+            if (rightMargin >= 133) {
+                newbool = true;
+                var affixLeftMargin = (tocAffix.outerWidth() - tocAffix.width()) / 2;
+                var left = markdown.offset().left + markdown.outerWidth() - affixLeftMargin;
+                tocAffix.css('left', left + 'px');
+            } else {
+                newbool = false;
+            }
+            if (newbool != enoughForAffixToc) {
+                enoughForAffixToc = newbool;
+                generateScrollspy();
+            }
+        }
+        $(window).resize(function () {
+            windowResize();
+        });
+        $(document).ready(function () {
+            windowResize();
+            generateScrollspy();
+        });
+
+        //remove hash
+        function removeHash() {
+            window.location.hash = '';
+        }
+
+        var backtotop = $('.back-to-top');
+        var gotobottom = $('.go-to-bottom');
+
+        backtotop.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToTop)
+                scrollToTop();
+            removeHash();
+        });
+        gotobottom.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToBottom)
+                scrollToBottom();
+            removeHash();
+        });
+
+        var toggle = $('.expand-toggle');
+        var tocExpand = false;
+
+        checkExpandToggle();
+        toggle.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            tocExpand = !tocExpand;
+            checkExpandToggle();
+        })
+
+        function checkExpandToggle () {
+            var toc = $('.ui-toc-dropdown .toc');
+            var toggle = $('.expand-toggle');
+            if (!tocExpand) {
+                toc.removeClass('expand');
+                toggle.text('Expand all');
+            } else {
+                toc.addClass('expand');
+                toggle.text('Collapse all');
+            }
+        }
+
+        function scrollToTop() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: 0
+            }, 100, "linear");
+        }
+
+        function scrollToBottom() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: $(document.body)[0].scrollHeight
+            }, 100, "linear");
+        }
+    </script>
+</body>
+
+</html>
